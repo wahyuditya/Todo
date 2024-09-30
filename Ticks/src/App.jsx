@@ -5,18 +5,35 @@ import TodoForms from "./components/todoForms";
 import Todos from "./components/Todos";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const handleNewEntry = (newEntry) => {
+    setTodos([...todos, newEntry]);
+  };
+
+  const handleRemove = (index) => {
+    // const remove = todos;
+    // remove.splice(index, 1);
+    // setTodos(remove);
+    console.log("in");
+  };
+
   return (
     <>
       <div className="container">
         <div className="warper">
           <div className="tittle">Todo</div>
 
-          <TodoForms />
+          <TodoForms newEntry={handleNewEntry} />
 
           <Filter />
 
           <div className="todosWarper">
-            <Todos />
+            {todos.map((tittle, index) => (
+              <ul key={index}>
+                <Todos tittle={tittle} handleRemove={handleRemove} />
+              </ul>
+            ))}
           </div>
         </div>
       </div>

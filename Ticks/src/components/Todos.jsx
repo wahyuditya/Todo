@@ -1,8 +1,8 @@
-function Todos() {
+function Todos({ tittle, handleRemove }) {
   return (
     <>
-      <p>Print a papper</p>
-      <button>Remove</button>
+      <p>{tittle}</p>
+      <button onClick={handleRemove}>Remove</button>
       <button>Edit</button>
       <button>Mark as complete</button>
     </>

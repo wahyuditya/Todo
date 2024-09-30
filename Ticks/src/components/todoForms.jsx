@@ -1,17 +1,14 @@
 import { useState } from "react";
 
-function TodosForms() {
+function TodosForms({ newEntry }) {
   const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
-
-  const todoList = todos.map((list, index) => `${index}. ${list}`);
 
   const handleChange = (e) => {
     setTodo(e.target.value);
   };
 
   const addNewTodo = () => {
-    setTodos([...todos, todo]);
+    newEntry(todo);
     setTodo("");
   };
 

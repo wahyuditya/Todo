@@ -99,10 +99,20 @@
   width: 100%;
   border-radius: 12px;
   gap: 8px;
+  flex-direction: column;
+}
+
+.todosWarper ul {
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
 }
 
 .todosWarper p {
-  width: 324px;
+  width: 424px;
   height: 52px;
   background-color: #e8e8e8;
   border-radius: 12px;
@@ -110,15 +120,14 @@
   align-items: center;
   font-size: 18px;
   padding: 0 19px;
-  margin-left: 19px;
 }
 
 .todosWarper button {
   height: 52px;
+  width: fit-content;
   border: none;
   border-radius: 12px;
   background-color: #e8e8e8;
   font-size: 18px;
-  padding: 0 19px;
-  margin-right: 19px;
+  padding: 0 14px;
 }
