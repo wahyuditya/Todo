@@ -8,8 +8,10 @@ function TodosForms({ newEntry }) {
   };
 
   const addNewTodo = () => {
-    newEntry(todo);
-    setTodo("");
+    if (todo !== "") {
+      newEntry(todo);
+      setTodo("");
+    }
   };
 
   const handleEnter = (e) => {

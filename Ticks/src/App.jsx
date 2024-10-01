@@ -5,17 +5,22 @@ import TodoForms from "./components/todoForms";
 import Todos from "./components/Todos";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(["buy a drink", "musicfest"]);
 
   const handleNewEntry = (newEntry) => {
     setTodos([...todos, newEntry]);
   };
 
   const handleRemove = (index) => {
-    // const remove = todos;
-    // remove.splice(index, 1);
-    // setTodos(remove);
-    console.log("in");
+    const toRemove = [...todos];
+    toRemove.splice(index, 1);
+    setTodos(toRemove);
+  };
+
+  const saveUpdate = (index, update) => {
+    const toUpdate = [...todos];
+    toUpdate[index] = update;
+    setTodos(toUpdate);
   };
 
   return (
@@ -31,7 +36,12 @@ function App() {
           <div className="todosWarper">
             {todos.map((tittle, index) => (
               <ul key={index}>
-                <Todos tittle={tittle} handleRemove={handleRemove} />
+                <Todos
+                  tittle={tittle}
+                  handleRemove={handleRemove}
+                  saveUpdate={saveUpdate}
+                  index={index}
+                />
               </ul>
             ))}
           </div>
