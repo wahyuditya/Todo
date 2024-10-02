@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function Todos({ tittle, handleRemove, index, saveUpdate }) {
-  const [update, setUpdate] = useState(tittle);
+function Todos({ title, handleRemove, index, saveUpdate }) {
+  const [update, setUpdate] = useState(title);
   const [isEdit, setIsEdit] = useState(false);
 
   const handleChange = (e) => {
@@ -34,7 +34,10 @@ function Todos({ tittle, handleRemove, index, saveUpdate }) {
         </>
       ) : (
         <>
-          <p>{tittle}</p>
+          <p>
+            {title}
+            {index}
+          </p>
           <button onClick={() => handleRemove(index)}>Remove</button>
           <button onClick={() => setIsEdit(true)}>Edit</button>
           <button>Mark as complete</button>

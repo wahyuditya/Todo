@@ -1,9 +1,13 @@
 function Filter() {
+  const filterAll = () => {
+    console.log("ok");
+  };
+
   return (
     <>
       <div className="filter">
         <div className="cat">
-          <button>All</button>
+          <button onClick={filterAll}>All</button>
           <button>Completed</button>
         </div>
         <svg
