@@ -1,14 +1,10 @@
-function Filter() {
-  const filterAll = () => {
-    console.log("ok");
-  };
-
+function Filter({ filterByAll, filterByCompleted }) {
   return (
     <>
       <div className="filter">
         <div className="cat">
-          <button onClick={filterAll}>All</button>
-          <button>Completed</button>
+          <button onClick={filterByAll}>All</button>
+          <button onClick={filterByCompleted}>Completed</button>
         </div>
         <svg
           width="24"

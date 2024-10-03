@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-function Todos({ title, handleRemove, index, saveUpdate }) {
+function Todos({
+  title,
+  handleRemove,
+  index,
+  saveUpdate,
+  markComplete,
+  complete,
+}) {
   const [update, setUpdate] = useState(title);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -34,13 +41,20 @@ function Todos({ title, handleRemove, index, saveUpdate }) {
         </>
       ) : (
         <>
-          <p>
-            {title}
-            {index}
-          </p>
-          <button onClick={() => handleRemove(index)}>Remove</button>
-          <button onClick={() => setIsEdit(true)}>Edit</button>
-          <button>Mark as complete</button>
+          <p>{title}</p>
+          {complete ? (
+            <>
+              <button onClick={() => handleRemove(index)}>Remove</button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => setIsEdit(true)}>Edit</button>
+              <button onClick={() => handleRemove(index)}>Remove</button>
+              <button onClick={() => markComplete(index)}>
+                Mark as complete
+              </button>
+            </>
+          )}
         </>
       )}
     </>
