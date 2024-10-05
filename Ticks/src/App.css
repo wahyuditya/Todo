@@ -5,12 +5,14 @@
 }
 
 .container {
-  width: 100%;
+  width: 100vw;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-top: 5%;
+
 }
 
 .warper {
@@ -21,6 +23,7 @@
   align-items: center;
   flex-direction: column;
   padding: 56px 68px;
+  border-radius: 12px;
 }
 
 .tittle {
@@ -61,6 +64,7 @@
   color: #F9F9F9;
   background-color: #242424;
 }
+
 
 .filter {
   display: flex;
@@ -166,6 +170,10 @@
 
 .todosWarper button:last-child {
   margin-right: 18px;
+}
+
+button{
+  cursor: pointer;
 }
 
 .completed{
