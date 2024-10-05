@@ -5,12 +5,8 @@ import TodoForms from "./components/todoForms";
 import Todos from "./components/Todos";
 
 function App() {
-  const [todos, setTodos] = useState([
-    { title: "buy a drink", complete: false },
-    { title: "musicfest", complete: false },
-    { title: "Running for your life", complete: true },
-  ]);
-  const [show, setShow] = useState(todos);
+  const [todos, setTodos] = useState([]);
+  const [isComplete, setIscomplete] = useState(false);
 
   const handleNewEntry = (newEntry) => {
     setTodos([...todos, { title: newEntry, complete: false }]);
@@ -20,7 +16,6 @@ function App() {
     const toRemove = [...todos];
     toRemove.splice(index, 1);
     setTodos(toRemove);
-    console.log("in");
   };
 
   const saveUpdate = (index, update) => {
@@ -36,12 +31,11 @@ function App() {
   };
 
   const showAll = () => {
-    setShow(todos);
+    setIscomplete(false);
   };
 
   const showCompleted = () => {
-    let filterd = todos.filter((todo) => todo.complete === true);
-    setShow(filterd);
+    setIscomplete(true);
   };
 
   return (
@@ -54,20 +48,44 @@ function App() {
 
           <Filter filterByAll={showAll} filterByCompleted={showCompleted} />
 
-          <div className="todosWarper">
-            {show.map((todo, index) => (
-              <ul key={index}>
-                <Todos
-                  title={todo.title}
-                  handleRemove={handleRemove}
-                  saveUpdate={saveUpdate}
-                  index={index}
-                  markComplete={markComplete}
-                  complete={todo.complete}
-                />
-              </ul>
-            ))}
-          </div>
+          {isComplete ? (
+            <>
+              <div className="todosWarper">
+                {todos
+                  .filter((todo) => todo.complete === true)
+                  .map((todo, index) => (
+                    <ul key={index}>
+                      <Todos
+                        title={todo.title}
+                        handleRemove={handleRemove}
+                        saveUpdate={saveUpdate}
+                        index={index}
+                        markComplete={markComplete}
+                        complete={todo.complete}
+                      />
+                    </ul>
+                  ))}
+              </div>
+            </>
+          ) : (
+            <>
+              {" "}
+              <div className="todosWarper">
+                {todos.map((todo, index) => (
+                  <ul key={index}>
+                    <Todos
+                      title={todo.title}
+                      handleRemove={handleRemove}
+                      saveUpdate={saveUpdate}
+                      index={index}
+                      markComplete={markComplete}
+                      complete={todo.complete}
+                    />
+                  </ul>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
