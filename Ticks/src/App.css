@@ -58,7 +58,8 @@
   font-size: 18px;
   border-radius: 12px;
   border: none;
-  background-color: #f0f0f0;
+  color: #F9F9F9;
+  background-color: #242424;
 }
 
 .filter {
@@ -84,7 +85,11 @@
   font-size: 18px;
   border-radius: 12px;
   border: none;
-  background-color: #f0f0f0;
+}
+
+.cat-btn-active{
+  color: #F9F9F9 !important;
+  background-color: #242424 !important;
 }
 
 .filter svg {
@@ -146,16 +151,23 @@
   width: fit-content;
   border: none;
   border-radius: 12px;
-  background-color: #e8e8e8;
+  color: #F9F9F9;
+  background-color: #242424;
   font-size: 18px;
   padding: 0 14px;
   min-width: fit-content;
+}
+
+.remove-btn{
+  border: solid 1px #242424 !important;
+  color: #242424 !important;
+  background-color: #E8E8E8 !important;
 }
 
 .todosWarper button:last-child {
   margin-right: 18px;
 }
 
-/* .completed p {
-  background-color: rgb(199, 253, 199);
-} */
+.completed{
+  opacity: 40%;
+}

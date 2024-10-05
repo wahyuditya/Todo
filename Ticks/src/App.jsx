@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {v4 as uuidv4} from "uuid";
 import "./App.css";
 import Filter from "./components/filter";
 import TodoForms from "./components/todoForms";
@@ -9,13 +10,14 @@ function App() {
   const [isComplete, setIscomplete] = useState(false);
 
   const handleNewEntry = (newEntry) => {
-    setTodos([...todos, { title: newEntry, complete: false }]);
+    setTodos([...todos, { id: uuidv4(), title: newEntry, complete: false }]);
+   
   };
 
-  const handleRemove = (index) => {
-    const toRemove = [...todos];
-    toRemove.splice(index, 1);
-    setTodos(toRemove);
+  const handleRemove = (id) => {
+    // const toRemove = [...todos];
+    setTodos(todos.filter((todo) => todo.id !== id))
+
   };
 
   const saveUpdate = (index, update) => {
@@ -62,6 +64,7 @@ function App() {
                         index={index}
                         markComplete={markComplete}
                         complete={todo.complete}
+                        id={todo.id}
                       />
                     </ul>
                   ))}
@@ -80,6 +83,7 @@ function App() {
                       index={index}
                       markComplete={markComplete}
                       complete={todo.complete}
+                      id={todo.id}
                     />
                   </ul>
                 ))}
