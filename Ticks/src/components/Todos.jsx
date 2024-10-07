@@ -11,10 +11,10 @@ function Todos({
   const [update, setUpdate] = useState(title);
   const [isEdit, setIsEdit] = useState(false);
 
-  // const val = title;
-
   const handleChange = (e) => {
     setUpdate(e.target.value);
+    // const val = e.target.value;
+    // // setUpdate(val);
   };
 
   const handleSave = () => {

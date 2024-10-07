@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import "./App.css";
 import Filter from "./components/filter";
 import TodoForms from "./components/todoForms";
@@ -7,6 +7,7 @@ import Todos from "./components/Todos";
 function App() {
   const [todos, setTodos] = useState([]);
   const [isComplete, setIscomplete] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const handleNewEntry = (newEntry) => {
     setTodos([...todos, { title: newEntry, complete: false }]);
@@ -38,6 +39,22 @@ function App() {
     setIscomplete(true);
   };
 
+  const filterTodo = (status) => {
+    if (status === "completed") {
+      console.log("completed");
+    } else if (status === "incomplete") {
+      console.log("incomplete");
+    } else {
+      console.log("all");
+    }
+  };
+
+  const showIncomplete = () => {
+    setFilter("_completed");
+    console.log(filter);
+    filterTodo(filter);
+  };
+
   return (
     <>
       <div className="container">
@@ -46,7 +63,11 @@ function App() {
 
           <TodoForms newEntry={handleNewEntry} />
 
-          <Filter filterByAll={showAll} filterByCompleted={showCompleted} />
+          <Filter
+            filterByAll={showAll}
+            filterByCompleted={showCompleted}
+            filterByIncomplete={showIncomplete}
+          />
 
           {isComplete ? (
             <>

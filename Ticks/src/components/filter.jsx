@@ -1,10 +1,11 @@
-function Filter({ filterByAll, filterByCompleted }) {
+function Filter({ filterByAll, filterByCompleted, filterByIncomplete }) {
   return (
     <>
       <div className="filter">
         <div className="cat">
           <button onClick={filterByAll}>All</button>
           <button onClick={filterByCompleted}>Completed</button>
+          <button onClick={filterByIncomplete}>Incomplete</button>
         </div>
         <svg
           width="24"
