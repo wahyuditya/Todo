@@ -1,25 +1,27 @@
 import { useState } from "react";
 
-function Filter({ filterByAll, filterByCompleted }) {
-  const [isActive, setIsActive] = useState("");
+function Filter({ filter }) {
+  const [isActive, setIsActive] = useState("allBtn");
 
   const handleByAll = (btnId) => {
     setIsActive(btnId);
-    filterByAll();
+    filter("all");
   };
 
   const handleByCompleted = (btnId) => {
     setIsActive(btnId);
-    filterByCompleted();
+    filter("completed");
+  };
+
+  const handleByIncomplete = (btnId) => {
+    setIsActive(btnId);
+    filter("incomplete");
   };
 
   return (
     <>
       <div className="filter">
         <div className="cat">
-          <button onClick={filterByAll}>All</button>
-          <button onClick={filterByCompleted}>Completed</button>
-          <button onClick={filterByIncomplete}>Incomplete</button>
           <button
             className={isActive === "allBtn" ? "cat-btn-active" : ""}
             onClick={() => handleByAll("allBtn")}
@@ -31,6 +33,12 @@ function Filter({ filterByAll, filterByCompleted }) {
             onClick={() => handleByCompleted("completedBtn")}
           >
             Completed
+          </button>
+          <button
+            className={isActive === "incompleteBtn" ? "cat-btn-active" : ""}
+            onClick={() => handleByIncomplete("incompleteBtn")}
+          >
+            Incomplete
           </button>
         </div>
         <svg

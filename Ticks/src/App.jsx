@@ -1,21 +1,24 @@
 import { useState, useSyncExternalStore } from "react";
 import "./App.css";
+import { v4 as uuidv4 } from "uuid";
 import Filter from "./components/filter";
 import TodoForms from "./components/todoForms";
 import Todos from "./components/Todos";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [isComplete, setIscomplete] = useState(false);
-  const [filter, setFilter] = useState("");
+  // const [todos, setTodos] = useState([
+  //   { title: "Read a book", completed: true },
+  //   { title: "Watch a movie", completed: false },
+  // ]);
+  const [filter, setFilter] = useState("all");
 
   const handleNewEntry = (newEntry) => {
-    setTodos([...todos, { title: newEntry, complete: false }]);
+    setTodos([...todos, { id: uuidv4(), title: newEntry, completed: false }]);
   };
 
-  const handleRemove = (index) => {
-    const toRemove = [...todos];
-    toRemove.splice(index, 1);
+  const handleRemove = (id) => {
+    const toRemove = todos.filter((todo) => todo.id !== id);
     setTodos(toRemove);
   };
 
@@ -27,33 +30,15 @@ function App() {
 
   const markComplete = (index) => {
     const toUpdate = [...todos];
-    toUpdate[index].complete = true;
+    toUpdate[index].completed = true;
     setTodos(toUpdate);
   };
 
-  const showAll = () => {
-    setIscomplete(false);
-  };
-
-  const showCompleted = () => {
-    setIscomplete(true);
-  };
-
-  const filterTodo = (status) => {
-    if (status === "completed") {
-      console.log("completed");
-    } else if (status === "incomplete") {
-      console.log("incomplete");
-    } else {
-      console.log("all");
-    }
-  };
-
-  const showIncomplete = () => {
-    setFilter("_completed");
-    console.log(filter);
-    filterTodo(filter);
-  };
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "completed") return todo.completed;
+    if (filter === "incomplete") return !todo.completed;
+    return true;
+  });
 
   return (
     <>
@@ -63,50 +48,24 @@ function App() {
 
           <TodoForms newEntry={handleNewEntry} />
 
-          <Filter
-            filterByAll={showAll}
-            filterByCompleted={showCompleted}
-            filterByIncomplete={showIncomplete}
-          />
-
-          {isComplete ? (
-            <>
-              <div className="todosWarper">
-                {todos
-                  .filter((todo) => todo.complete === true)
-                  .map((todo, index) => (
-                    <ul key={index}>
-                      <Todos
-                        title={todo.title}
-                        handleRemove={handleRemove}
-                        saveUpdate={saveUpdate}
-                        index={index}
-                        markComplete={markComplete}
-                        complete={todo.complete}
-                      />
-                    </ul>
-                  ))}
-              </div>
-            </>
-          ) : (
-            <>
-              {" "}
-              <div className="todosWarper">
-                {todos.map((todo, index) => (
-                  <ul key={index}>
-                    <Todos
-                      title={todo.title}
-                      handleRemove={handleRemove}
-                      saveUpdate={saveUpdate}
-                      index={index}
-                      markComplete={markComplete}
-                      complete={todo.complete}
-                    />
-                  </ul>
-                ))}
-              </div>
-            </>
-          )}
+          <Filter filter={setFilter} />
+          <>
+            <div className="todosWarper">
+              {filteredTodos.map((todo, index) => (
+                <ul key={index}>
+                  <Todos
+                    title={todo.title}
+                    handleRemove={handleRemove}
+                    saveUpdate={saveUpdate}
+                    index={index}
+                    markComplete={markComplete}
+                    complete={todo.completed}
+                    id={todo.id}
+                  />
+                </ul>
+              ))}
+            </div>
+          </>
         </div>
       </div>
     </>
