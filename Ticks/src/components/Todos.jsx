@@ -7,15 +7,26 @@ function Todos({
   saveUpdate,
   markComplete,
   complete,
+  id
 }) {
-  const [update, setUpdate] = useState(title);
+  const [update, setUpdate] = useState("");
   const [isEdit, setIsEdit] = useState(false);
 
+<<<<<<< HEAD
+=======
+  // setUpdate(title)
+
+>>>>>>> 6758ae44b93ad5cc4f22e9e1c7f78ef0ebdf0e0a
   const handleChange = (e) => {
     setUpdate(e.target.value);
     // const val = e.target.value;
     // // setUpdate(val);
   };
+
+  const handleEdit = () =>{
+    setUpdate(title)
+    setIsEdit(true)
+  }
 
   const handleSave = () => {
     saveUpdate(index, update);
@@ -36,22 +47,23 @@ function Todos({
             type="text"
             onKeyDown={handleEnter}
             onChange={handleChange}
-            value={title}
+            value={update}
           ></input>
           <button onClick={handleSave}>Save</button>
           <button onClick={() => setIsEdit(false)}>Cancel</button>
         </>
       ) : (
         <>
-          <p>{title}</p>
+          <p className={complete? "completed": ""}>{title}</p>
           {complete ? (
             <>
-              <button onClick={() => handleRemove(index)}>Remove</button>
+              <button className="remove-btn" onClick={() => handleRemove(id)}>Remove</button>
             </>
           ) : (
             <>
-              <button onClick={() => setIsEdit(true)}>Edit</button>
-              <button onClick={() => handleRemove(index)}>Remove</button>
+              
+              <button className="remove-btn" onClick={() => handleRemove(id)}>Remove</button>
+              <button onClick={handleEdit}>Edit</button>
               <button onClick={() => markComplete(index)}>
                 Mark as complete
               </button>

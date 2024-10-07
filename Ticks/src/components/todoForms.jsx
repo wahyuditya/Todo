@@ -8,7 +8,7 @@ function TodosForms({ newEntry }) {
   };
 
   const addNewTodo = () => {
-    if (todo !== "") {
+    if (todo.trim()) {
       newEntry(todo);
       setTodo("");
     }
