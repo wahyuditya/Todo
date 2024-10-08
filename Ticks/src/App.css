@@ -4,6 +4,12 @@
   font-family: "Poppins", sans-serif;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+}
+
 .container {
   width: 100vw;
   height: 100%;
@@ -12,7 +18,6 @@
   align-items: center;
   position: relative;
   margin-top: 5%;
-
 }
 
 .warper {
@@ -61,10 +66,9 @@
   font-size: 18px;
   border-radius: 12px;
   border: none;
-  color: #F9F9F9;
+  color: #f9f9f9;
   background-color: #242424;
 }
-
 
 .filter {
   display: flex;
@@ -91,8 +95,8 @@
   border: none;
 }
 
-.cat-btn-active{
-  color: #F9F9F9 !important;
+.cat-btn-active {
+  color: #f9f9f9 !important;
   background-color: #242424 !important;
 }
 
@@ -150,32 +154,139 @@
   border: none;
 }
 
+.buttons {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.buttons-editMode {
+  display: flex;
+  gap: 14px;
+}
+
+.buttons-editMode button {
+  width: 100%;
+}
+
 .todosWarper button {
   height: 52px;
   width: fit-content;
   border: none;
   border-radius: 12px;
-  color: #F9F9F9;
+  color: #f9f9f9;
   background-color: #242424;
   font-size: 18px;
   padding: 0 14px;
   min-width: fit-content;
 }
 
-.remove-btn{
+.remove-btn {
   border: solid 1px #242424 !important;
   color: #242424 !important;
-  background-color: #E8E8E8 !important;
+  background-color: #e8e8e8 !important;
 }
 
 .todosWarper button:last-child {
   margin-right: 18px;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-.completed{
+.completed {
   opacity: 40%;
+}
+
+@media only screen and (max-width: 768px) {
+  .todosWarper {
+    padding: 18px 18px;
+    box-sizing: border-box;
+  }
+
+  .todosWarper ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .todosWarper p {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0px;
+  }
+
+  /* .todosWarper .buttons {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 14px;
+  } */
+
+  .buttons-editMode,
+  .buttons {
+    display: flex;
+    gap: 14px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .buttons-editMode button,
+  .buttons button {
+    width: 100%;
+  }
+
+  .todosWarper input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .container {
+    width: 100%;
+    display: flex;
+    margin: 0;
+  }
+  .tittle {
+    text-align: center;
+  }
+
+  .warper {
+    width: 100%;
+    padding: 18px 12px;
+    box-sizing: border-box;
+  }
+
+  .todosWarper input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  .buttons {
+    display: block !important;
+    width: 100%;
+  }
+
+  .buttons button {
+    padding: 0px;
+    margin: 0px;
+    height: 42px;
+  }
+
+  .buttons button:nth-child(1),
+  .buttons button:nth-child(2) {
+    display: inline-block;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+
+  .buttons button:nth-child(3) {
+    width: 100%;
+    margin-bottom: 18px;
+  }
 }

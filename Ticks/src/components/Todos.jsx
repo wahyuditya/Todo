@@ -11,12 +11,9 @@ function Todos({
 }) {
   const [update, setUpdate] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-  // setUpdate(title)
 
   const handleChange = (e) => {
     setUpdate(e.target.value);
-    // const val = e.target.value;
-    // // setUpdate(val);
   };
 
   const handleEdit = () => {
@@ -45,27 +42,33 @@ function Todos({
             onChange={handleChange}
             value={update}
           ></input>
-          <button onClick={handleSave}>Save</button>
-          <button onClick={() => setIsEdit(false)}>Cancel</button>
+          <div className="buttons-editMode">
+            <button onClick={handleSave}>Save</button>
+            <button onClick={() => setIsEdit(false)}>Cancel</button>
+          </div>
         </>
       ) : (
         <>
           <p className={complete ? "completed" : ""}>{title}</p>
           {complete ? (
             <>
-              <button className="remove-btn" onClick={() => handleRemove(id)}>
-                Remove
-              </button>
+              <div className="buttons">
+                <button className="remove-btn" onClick={() => handleRemove(id)}>
+                  Remove
+                </button>
+              </div>
             </>
           ) : (
             <>
-              <button className="remove-btn" onClick={() => handleRemove(id)}>
-                Remove
-              </button>
-              <button onClick={handleEdit}>Edit</button>
-              <button onClick={() => markComplete(index)}>
-                Mark as complete
-              </button>
+              <div className="buttons">
+                <button className="remove-btn" onClick={() => handleRemove(id)}>
+                  Remove
+                </button>
+                <button onClick={handleEdit}>Edit</button>
+                <button onClick={() => markComplete(index)}>
+                  Mark as complete
+                </button>
+              </div>
             </>
           )}
         </>
