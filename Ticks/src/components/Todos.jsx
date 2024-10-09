@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 
 function Todos({
   title,
@@ -11,6 +12,26 @@ function Todos({
 }) {
   const [update, setUpdate] = useState("");
   const [isEdit, setIsEdit] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  useEffect(() => {
+    const blockClick = (e) => {
+      if (isEdit && !e.target.closest(".edit-form")) {
+        e.stopPropagation();
+        e.preventDefault();
+        setShowTooltip(true);
+      }
+    };
+    if (isEdit) {
+      document.addEventListener("click", blockClick, true);
+    } else {
+      document.removeEventListener("click", blockClick, true);
+    }
+
+    return () => {
+      document.removeEventListener("click", blockClick, true);
+    };
+  }, [isEdit]);
 
   const handleChange = (e) => {
     setUpdate(e.target.value);
@@ -19,11 +40,17 @@ function Todos({
   const handleEdit = () => {
     setUpdate(title);
     setIsEdit(true);
+    setShowTooltip(false);
   };
 
   const handleSave = () => {
     saveUpdate(index, update);
     setIsEdit(false);
+  };
+
+  const handleCancel = () => {
+    setIsEdit(false);
+    setShowTooltip(false);
   };
 
   const handleEnter = (e) => {
@@ -36,15 +63,22 @@ function Todos({
     <>
       {isEdit ? (
         <>
-          <input
-            type="text"
-            onKeyDown={handleEnter}
-            onChange={handleChange}
-            value={update}
-          ></input>
-          <div className="buttons-editMode">
-            <button onClick={handleSave}>Save</button>
-            <button onClick={() => setIsEdit(false)}>Cancel</button>
+          <div className="edit-form">
+            <input
+              type="text"
+              onKeyDown={handleEnter}
+              onChange={handleChange}
+              value={update}
+            ></input>
+            <div className="buttons-editMode">
+              <button onClick={handleSave}>Save</button>
+              <button onClick={handleCancel}>Cancel</button>
+            </div>
+            {showTooltip && (
+              <div className="tooltip">
+                Please save or cancel your changes before continuing
+              </div>
+            )}
           </div>
         </>
       ) : (

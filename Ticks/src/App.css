@@ -157,7 +157,7 @@ body {
 .buttons {
   display: flex;
   gap: 14px;
-  width: 100%;
+  width: auto;
   justify-content: space-evenly;
 }
 
@@ -170,16 +170,22 @@ body {
   width: 100%;
 }
 
+.buttons-editMode button:nth-child(2) {
+  border: solid 1px #242424;
+  color: #242424;
+  background-color: #e8e8e8;
+}
+
 .todosWarper button {
   height: 52px;
-  width: fit-content;
-  border: none;
+  font-size: 18px;
   border-radius: 12px;
+  border: none;
   color: #f9f9f9;
   background-color: #242424;
-  font-size: 18px;
-  padding: 0 14px;
-  min-width: fit-content;
+  width: max-content;
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
 .remove-btn {
@@ -200,6 +206,30 @@ button {
   opacity: 40%;
 }
 
+.edit-form {
+  position: relative;
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.tooltip {
+  background-color: #494949;
+  color: white;
+  padding: 12px;
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  text-align: center;
+}
+
 @media only screen and (max-width: 768px) {
   .todosWarper {
     padding: 18px 18px;
@@ -218,24 +248,36 @@ button {
     margin: 0px;
   }
 
-  /* .todosWarper .buttons {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 30px;
-    gap: 14px;
-  } */
-
-  .buttons-editMode,
-  .buttons {
+  .buttons-editMode {
     display: flex;
     gap: 14px;
     width: 100%;
     margin-bottom: 30px;
   }
 
-  .buttons-editMode button,
+  .edit-form {
+    display: block;
+  }
+
+  .edit-form input {
+    margin-bottom: 12px !important;
+  }
+
+  .buttons-editMode button {
+    width: 100%;
+  }
+
+  .buttons {
+    width: 100%;
+    display: block;
+  }
   .buttons button {
     width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .buttons-editMode button:nth-child(2) {
+    margin: 0;
   }
 
   .todosWarper input {
@@ -268,14 +310,13 @@ button {
   }
 
   .buttons {
-    display: block !important;
     width: 100%;
+    display: block;
   }
 
   .buttons button {
-    padding: 0px;
-    margin: 0px;
-    height: 42px;
+    width: 100%;
+    margin-bottom: 12px;
   }
 
   .buttons button:nth-child(1),

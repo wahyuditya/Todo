@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import "./App.css";
 import { v4 as uuidv4 } from "uuid";
 import Filter from "./components/filter";
@@ -14,7 +14,7 @@ function App() {
   const [filter, setFilter] = useState("all");
 
   const handleNewEntry = (newEntry) => {
-    setTodos([...todos, { id: uuidv4(), title: newEntry, completed: false }]);
+    setTodos([{ id: uuidv4(), title: newEntry, completed: false }, ...todos]);
   };
 
   const handleRemove = (id) => {
